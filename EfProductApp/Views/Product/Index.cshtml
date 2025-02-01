@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EfProductApp.Entities.Product>
+
+@if (TempData["Message"] != null)
+{
+	<div class="alert alert-primary" role="alert">
+		@TempData["Message"]
+	</div>
+}
+
+@foreach(var item in Model)
+{
+	<div style="width:40%;border:solid 2px navy;margin:10px">
+		<h2>Name: @item.Name</h2>
+		<h2>Description: @item.Description</h2>
+		<h2>Discount: @item.Discount</h2>
+		<h2>Price: @item.Price</h2>
+		<a class="btn btn-danger" asp-controller="product" asp-action="delete"
+		   asp-route-id="@item.Id">Delete Product</a>
+		<a class="btn btn-outline-primary" asp-controller="product" asp-action="update" asp-route-id="@item.Id">Update Product</a>
+	</div>
+}
+<a href="/product/add" class="btn btn-outline-success">Add New Product</a>
